@@ -6,6 +6,8 @@ exec > >(tee -a "$LOG") 2>&1
 
 echo "=== CloudShelf bootstrap started: $(date) ==="
 
+echo 'Acquire::ForceIPv4 "true";' | tee /etc/apt/apt.conf.d/99force-ipv4
+
 # Update system
 echo "Updating system packages..."
 apt-get update -y
