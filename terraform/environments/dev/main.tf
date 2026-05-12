@@ -19,4 +19,5 @@ module "vpc" {
 
 module "iam" {
   source = "../../modules/iam"
+  account_id = var.account_id
 }

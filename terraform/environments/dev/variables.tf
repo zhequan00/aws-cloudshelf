@@ -8,3 +8,8 @@ variable "project" {
     type = string
     default = "cloudshelf"
 }
+
+variable "account_id" {
+    description = "AWS account ID"
+    type = string
+}

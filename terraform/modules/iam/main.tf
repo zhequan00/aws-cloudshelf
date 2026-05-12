@@ -23,14 +23,19 @@ resource "aws_iam_role_policy" "ec2_policy" {
     Version = "2012-10-17"
     Statement = [
       {
+         Sid      = "ECRAuthToken"
+        Effect   = "Allow"
+        Action   = "ecr:GetAuthorizationToken"
+        Resource = "*"
+      },
+      {
         Sid    = "ECRPull"
         Effect = "Allow"
         Action = [
-          "ecr:GetAuthorizationToken",
           "ecr:BatchGetImage",
           "ecr:GetDownloadUrlForLayer"
         ]
-        Resource = "*"
+        Resource = "arn:aws:ecr:ap-southeast-1:${var.account_id}:repository/cloudshelf-app"
       },
       {
         Sid    = "CloudWatchLogs"
