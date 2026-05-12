@@ -16,3 +16,7 @@ module "vpc" {
     project = var.project
     my_ip = var.my_ip
 }
+
+module "iam" {
+  source = "../../modules/iam"
+}

@@ -39,9 +39,17 @@ terraform/
 └── modules/
 └── vpc/             # VPC, subnets, IGW, route tables, SGs
 
+## Security & Credentials
+
+No hardcoded credentials exist in this repo.
+
+- **EC2** authenticates to ECR and CloudWatch via IAM instance profile: the instance itself is the identity, no keys needed
+- **GitHub Actions** authenticates to ECR via `cloudshelf-cicd` IAM user keys stored as GitHub Actions secrets — never committed to the repo
+- **Local CLI** uses `cloudshelf-admin` IAM user configured via `aws configure`: never committed
+
 ## Phases
 - [x] Phase 1 — VPC, Networking & Terraform Bootstrap
-- [ ] Phase 2 — IAM & Least Privilege
+- [x] Phase 2 — IAM & Least Privilege
 - [ ] Phase 3 — EC2 & Linux Setup
 - [ ] Phase 4 — App, Docker & ECR
 - [ ] Phase 5 — RDS
