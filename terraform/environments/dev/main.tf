@@ -21,3 +21,12 @@ module "iam" {
   source = "../../modules/iam"
   account_id = var.account_id
 }
+
+module "compute" {
+  source                = "../../modules/compute"
+  ami_id                = var.ami_id
+  subnet_id             = module.vpc.public_subnet_1a_id
+  ec2_sg_id             = module.vpc.ec2_sg_id
+  instance_profile_name = module.iam.ec2_instance_profile_name
+  key_name              = "cloudshelf-key"
+}
