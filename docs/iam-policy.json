@@ -1,0 +1,62 @@
+{
+  "EC2InstanceProfilePolicy": {
+    "_comment": "Attached to cloudshelf-ec2-role. Grants EC2 instance identity to pull from ECR and write logs to CloudWatch: no hardcoded credentials needed on the instance.",
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "_comment": "GetAuthorizationToken must be Resource * - it is an account-level API call, not repo-scoped",
+        "Sid": "ECRAuthToken",
+        "Effect": "Allow",
+        "Action": "ecr:GetAuthorizationToken",
+        "Resource": "*"
+      },
+      {
+        "_comment": "Scoped to cloudshelf-app repo only — least privilege for image pull",
+        "Sid": "ECRPull",
+        "Effect": "Allow",
+        "Action": [
+          "ecr:BatchGetImage",
+          "ecr:GetDownloadUrlForLayer"
+        ],
+        "Resource": "arn:aws:ecr:ap-southeast-1:ACCOUNT_ID:repository/cloudshelf-app"
+      },
+      {
+        "_comment": "Allows EC2 to ship Docker stdout and bootstrap logs to CloudWatch",
+        "Sid": "CloudWatchLogs",
+        "Effect": "Allow",
+        "Action": [
+          "logs:CreateLogGroup",
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ],
+        "Resource": "*"
+      }
+    ]
+  },
+  "CICDUserPolicy": {
+    "_comment": "Attached to cloudshelf-cicd IAM user. Scoped to ECR push only: used by GitHub Actions to build and push Docker images.",
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "_comment": "GetAuthorizationToken must be Resource * account-level call",
+        "Sid": "ECRAuthToken",
+        "Effect": "Allow",
+        "Action": "ecr:GetAuthorizationToken",
+        "Resource": "*"
+      },
+      {
+        "_comment": "All push actions scoped to cloudshelf-app repo only: cannot pull, delete, or access other repos",
+        "Sid": "ECRPush",
+        "Effect": "Allow",
+        "Action": [
+          "ecr:BatchCheckLayerAvailability",
+          "ecr:PutImage",
+          "ecr:InitiateLayerUpload",
+          "ecr:UploadLayerPart",
+          "ecr:CompleteLayerUpload"
+        ],
+        "Resource": "arn:aws:ecr:ap-southeast-1:ACCOUNT_ID:repository/cloudshelf-app"
+      }
+    ]
+  }
+}
