@@ -30,3 +30,12 @@ module "compute" {
   instance_profile_name = module.iam.ec2_instance_profile_name
   key_name              = "cloudshelf-key"
 }
+
+module "rds" {
+  source = "../../modules/rds"
+
+  db_username = var.db_username
+  db_password = var.db_password
+  rds_sg_id = module.vpc.rds_sg_id
+  subnet_ids = module.vpc.public_subnet_ids
+}
