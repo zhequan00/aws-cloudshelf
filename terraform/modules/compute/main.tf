@@ -24,3 +24,12 @@ resource "aws_eip" "ec2_eip" {
     Project = "CloudShelf"
   }
 }
+
+resource "aws_ecr_repository" "app" {
+  name = "cloudshelf-app"
+  force_delete = true
+
+  image_scanning_configuration {
+    scan_on_push = true
+  }
+}
