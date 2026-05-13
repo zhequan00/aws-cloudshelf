@@ -47,14 +47,14 @@ No hardcoded credentials exist in this repo.
 - **GitHub Actions** authenticates to ECR via `cloudshelf-cicd` IAM user keys stored as GitHub Actions secrets — never committed to the repo
 - **Local CLI** uses `cloudshelf-admin` IAM user configured via `aws configure`: never committed
 
-![Phase 3 - EC2 Console](docs/phase3-ec2.png)
+![Phase 3 - EC2 Console](docs/screenshots/phase3-ec2.png)
 
 ## Phases
 - [x] Phase 1 — VPC, Networking & Terraform Bootstrap
 - [x] Phase 2 — IAM & Least Privilege
 - [x] Phase 3 — EC2 & Linux Setup
 - [x] Phase 4 — App, Docker & ECR
-- [ ] Phase 5 — RDS
+- [x] Phase 5 — RDS
 - [ ] Phase 6 — Frontend S3
 - [ ] Phase 7 — CI/CD GitHub Actions
 - [ ] Phase 8 — CloudWatch
