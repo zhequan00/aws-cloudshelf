@@ -2,6 +2,9 @@
 
 Full-stack cloud application on AWS using free-tier resources only.
 
+## Live Link
+Frontend: http://cloudshelf-frontend-126104434582.s3-website-ap-southeast-1.amazonaws.com/
+
 ## Architecture Diagram
 
 Internet
@@ -55,7 +58,7 @@ No hardcoded credentials exist in this repo.
 - [x] Phase 3 — EC2 & Linux Setup
 - [x] Phase 4 — App, Docker & ECR
 - [x] Phase 5 — RDS
-- [ ] Phase 6 — Frontend S3
+- [x] Phase 6 — Frontend S3
 - [ ] Phase 7 — CI/CD GitHub Actions
 - [ ] Phase 8 — CloudWatch
 - [ ] Phase 9 — Terraform Consolidation
