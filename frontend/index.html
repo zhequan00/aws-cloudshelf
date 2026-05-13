@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CloudShelf</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 0 20px; }
+    h1 { color: #232f3e; }
+    ul { list-style: none; padding: 0; }
+    li { padding: 8px; margin: 4px 0; background: #f4f4f4; border-radius: 4px; }
+  </style>
+</head>
+<body>
+  <h1>CloudShelf</h1>
+  <p>Items from RDS:</p>
+  <ul id="items-list">Loading...</ul>
+
+  <script>
+    fetch('http://18.139.166.215/items')
+      .then(res => res.json())
+      .then(data => {
+        const list = document.getElementById('items-list');
+        list.innerHTML = data.items
+          .map(item => `<li>${JSON.stringify(item)}</li>`)
+          .join('');
+      })
+      .catch(err => {
+        document.getElementById('items-list').innerHTML = 'Error loading items.';
+        console.error(err);
+      });
+  </script>
+</body>
+</html>

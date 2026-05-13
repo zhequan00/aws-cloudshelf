@@ -21,3 +21,8 @@ output "rds_sg_id" {
 output "rds_endpoint" {
     value = module.rds.rds_endpoint
 }
+
+output "website_url" {
+    description = "S3 static website URL"
+    value = module.frontend.website_url
+}

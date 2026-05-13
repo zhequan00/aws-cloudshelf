@@ -39,3 +39,8 @@ module "rds" {
   rds_sg_id = module.vpc.rds_sg_id
   subnet_ids = module.vpc.public_subnet_ids
 }
+
+module "frontend" {
+  source = "../../modules/frontend"
+  bucket_name = "cloudshelf-frontend-126104434582"
+}
