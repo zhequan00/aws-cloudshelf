@@ -53,7 +53,7 @@ No hardcoded credentials exist in this repo.
 - [x] Phase 1 — VPC, Networking & Terraform Bootstrap
 - [x] Phase 2 — IAM & Least Privilege
 - [x] Phase 3 — EC2 & Linux Setup
-- [ ] Phase 4 — App, Docker & ECR
+- [x] Phase 4 — App, Docker & ECR
 - [ ] Phase 5 — RDS
 - [ ] Phase 6 — Frontend S3
 - [ ] Phase 7 — CI/CD GitHub Actions
