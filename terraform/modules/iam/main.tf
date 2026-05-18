@@ -23,7 +23,7 @@ resource "aws_iam_role_policy" "ec2_policy" {
     Version = "2012-10-17"
     Statement = [
       {
-         Sid      = "ECRAuthToken"
+        Sid      = "ECRAuthToken"
         Effect   = "Allow"
         Action   = "ecr:GetAuthorizationToken"
         Resource = "*"
@@ -43,7 +43,25 @@ resource "aws_iam_role_policy" "ec2_policy" {
         Action = [
           "logs:CreateLogGroup",
           "logs:CreateLogStream",
-          "logs:PutLogEvents"
+          "logs:PutLogEvents",
+          "logs:DescribeLogGroups",
+          "logs:DescribeLogStreams"
+        ]
+        Resource = "*"
+      },
+      {
+        Sid    = "CloudWatchMetrics"
+        Effect = "Allow"
+        Action = [
+          "cloudwatch:PutMetricData"
+        ]
+        Resource = "*"
+      },
+      {
+        Sid    = "EC2Tags"
+        Effect = "Allow"
+        Action = [
+          "ec2:DescribeTags"
         ]
         Resource = "*"
       }

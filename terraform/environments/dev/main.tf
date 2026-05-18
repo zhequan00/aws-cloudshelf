@@ -1,24 +1,24 @@
 terraform {
-    required_providers {
-      aws = {
-        source = "hashicorp/aws"
-        version = "~> 5.0"
-      }
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
     }
+  }
 }
 
 provider "aws" {
-    region = "ap-southeast-1"
+  region = "ap-southeast-1"
 }
 
 module "vpc" {
-    source  = "../../modules/vpc"
-    project = var.project
-    my_ip = var.my_ip
+  source  = "../../modules/vpc"
+  project = var.project
+  my_ip   = var.my_ip
 }
 
 module "iam" {
-  source = "../../modules/iam"
+  source     = "../../modules/iam"
   account_id = var.account_id
 }
 
@@ -36,11 +36,17 @@ module "rds" {
 
   db_username = var.db_username
   db_password = var.db_password
-  rds_sg_id = module.vpc.rds_sg_id
-  subnet_ids = module.vpc.public_subnet_ids
+  rds_sg_id   = module.vpc.rds_sg_id
+  subnet_ids  = module.vpc.public_subnet_ids
 }
 
 module "frontend" {
-  source = "../../modules/frontend"
+  source      = "../../modules/frontend"
   bucket_name = "cloudshelf-frontend-126104434582"
+}
+
+module "observability" {
+  source  = "../../modules/observability"
+  project = var.project
+  instance_id = module.compute.instance_id
 }
