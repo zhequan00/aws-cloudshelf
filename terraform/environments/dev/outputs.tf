@@ -41,3 +41,13 @@ output "ec2_instance_id" {
   description = "EC2 instance ID"
   value       = module.compute.instance_id
 }
+
+output "ec2_public_ip" {
+  description = "EC2 Elastic IP"
+  value = module.compute.public_ip
+}
+
+output "ecr_repository_uri" {
+  description = "ECR repository URI"
+  value = module.compute.ecr_repository_uri
+}
