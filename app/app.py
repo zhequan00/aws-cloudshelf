@@ -6,7 +6,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-def get_db_connection():
+def get_db_connection(): #Connecting to rds
     return mysql.connector.connect(
         host=os.environ['DB_HOST'],
         user=os.environ['DB_USER'],
