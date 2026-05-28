@@ -2,7 +2,7 @@
 
 Full-stack cloud application on AWS. All infrastructure in Terraform. Free tier only.
 
-## Live Link
+## Live Link (S3 might not be up and running to save cost, refer to the screenshot below the link thank you!)
 Frontend: http://cloudshelf-frontend-126104434582.s3-website-ap-southeast-1.amazonaws.com/
 
 ![CloudSHelf Live Demo](docs/screenshots/phase6-s3-web.png)
