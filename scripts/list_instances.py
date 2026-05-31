@@ -4,7 +4,7 @@ def list_cloudshelf_instances():
     ec2 = boto3.client("ec2", region_name="ap-southeast-1")
     
     response = ec2.describe_instances(
-        Filters=[{"Name": "tag:Project", "Values": ["CloudShelf"]}]
+        Filters=[{"Name": "tag:Project", "Values": ["cloudshelf"]}]
     )
     
     instances = []
@@ -21,7 +21,7 @@ def list_cloudshelf_instances():
             })
     
     if not instances:
-        print("No CloudShelf instances found.")
+        print("No cloudshelf instances found.")
         return
         
     for i in instances:
